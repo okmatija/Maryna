@@ -152,9 +152,25 @@ body.lang-uk .flag-uk { opacity: 1; }
   border-top: 1px solid var(--line);
 }
 body.view-services .sub-nav { display: flex; }
-.sub-nav a { color: var(--muted); font-size: .95rem; }
-.sub-nav a:hover, .sub-nav a.active { color: var(--accent); }
-.sub-sep { color: var(--line); }
+.sub-nav a {
+  position: relative;
+  color: var(--muted);
+  font-size: .95rem;
+  padding: 2px 0;
+}
+.sub-nav a::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -3px;
+  height: 2px;
+  background: var(--ink);
+  transform: scaleX(0);
+  transition: transform .22s ease;
+}
+.sub-nav a:hover { color: var(--ink); }
+.sub-nav a.active { color: var(--ink); }
+.sub-nav a.active::after { transform: scaleX(1); }
+.sub-sep { display: none; }
 
 /* ============================================================
    SECTIONS / LAYOUT
