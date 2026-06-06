@@ -54,6 +54,9 @@ a:hover { color: var(--accent-2); }
 body:not(.lang-uk) .lang-uk { display: none; }
 body.lang-uk       .lang-en { display: none; }
 
+/* Blog is Ukrainian-only */
+body:not(.lang-uk) .blog-only { display: none; }
+
 /* ============================================================
    HEADER (sticky)
    ============================================================ */
@@ -71,6 +74,7 @@ body.lang-uk       .lang-en { display: none; }
   margin: 0 auto;
   padding: 18px 24px 14px;
   text-align: center;
+  user-select: none;
 }
 
 .brand {
@@ -193,6 +197,32 @@ body.view-services .sub-nav { display: flex; }
 
 .blog-item { margin-bottom: 64px; }
 .blog-item:last-child { margin-bottom: 0; }
+
+/* ---------- Learn More / Show Less details toggle ---------- */
+.service-details { margin: 1.4em 0 0; }
+.service-details summary {
+  display: block;
+  list-style: none;
+  cursor: pointer;
+  width: 100%;
+  border: 2px solid var(--accent);
+  color: var(--accent);
+  background: transparent;
+  border-radius: 999px;
+  padding: 10px 22px;
+  text-align: center;
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 1rem;
+  user-select: none;
+  transition: background .2s ease, color .2s ease;
+}
+.service-details summary::-webkit-details-marker { display: none; }
+.service-details summary::marker { display: none; }
+.service-details summary:hover { background: var(--accent); color: #fff; }
+.service-details:not([open]) .text-less { display: none; }
+.service-details[open] .text-more { display: none; }
+.details-body { padding-top: 1.2em; }
 
 /* ---------- Buttons ---------- */
 .btn {

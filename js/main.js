@@ -79,6 +79,8 @@ $(function () {
     $("body").removeClass("lang-en lang-uk").addClass("lang-" + lang);
     document.documentElement.lang = lang;
     try { localStorage.setItem("lang", lang); } catch (e) {}
+    // Blog is Ukrainian-only; redirect to home if switching away
+    if (lang === "en" && $("body").hasClass("view-blog")) showSection("home");
     updateHeaderHeight();
     revealInView();
   }
@@ -136,6 +138,19 @@ $(function () {
     });
   });
   $(window).on("resize", updateHeaderHeight);
+
+  /* ---------- Details smooth slide ---------- */
+  $(".service-details summary").on("click", function (e) {
+    e.preventDefault();
+    var $details = $(this).closest("details");
+    var $body = $details.find(".details-body");
+    if ($details.prop("open")) {
+      $body.slideUp(280, function () { $details.prop("open", false); });
+    } else {
+      $details.prop("open", true);
+      $body.hide().slideDown(280);
+    }
+  });
 
   /* ---------- YouTube facade ---------- */
   $(".yt").each(function () {
