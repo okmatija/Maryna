@@ -242,7 +242,7 @@ body.view-blog .blog-sub-nav { display: flex; }
   gap: 48px;
   align-items: center;
 }
-.one-col { max-width: 760px; }
+.one-col { max-width: 760px; margin-left: auto; margin-right: auto; }
 
 /* Credentials / training list */
 .creds { padding-left: 1.2em; margin: 0 0 1.1em; }
