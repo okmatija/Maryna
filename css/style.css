@@ -58,6 +58,10 @@ blockquote {
   font-style: italic;
   color: var(--muted);
 }
+blockquote.disclaimer {
+  border-left-color: var(--accent-2);
+  background: rgba(176, 122, 87, 0.07);
+}
 blockquote p { margin: 0 0 .4em; }
 blockquote p:last-child { margin: 0; }
 blockquote cite { font-size: .9rem; font-style: normal; color: var(--muted); }
