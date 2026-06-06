@@ -199,24 +199,23 @@ body.view-services .sub-nav { display: flex; }
 .blog-item:last-child { margin-bottom: 0; }
 
 /* ---------- Learn More / Show Less details toggle ---------- */
-.service-details { margin: 1.4em 0 0; }
+.service-details { margin: 1.4em 0 0; text-align: center; }
 .service-details summary {
-  display: block;
+  display: inline-block;
   list-style: none;
   cursor: pointer;
-  width: 100%;
   border: 2px solid var(--accent);
   color: var(--accent);
   background: transparent;
   border-radius: 999px;
   padding: 10px 22px;
-  text-align: center;
   font-family: var(--sans);
   font-weight: 500;
   font-size: 1rem;
   user-select: none;
   transition: background .2s ease, color .2s ease;
 }
+.details-body { text-align: left; }
 .service-details summary::-webkit-details-marker { display: none; }
 .service-details summary::marker { display: none; }
 .service-details summary:hover { background: var(--accent); color: #fff; }
