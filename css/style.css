@@ -178,7 +178,7 @@ body.view-services .sub-nav { display: flex; }
   content: "";
   position: absolute;
   left: 0; right: 0; bottom: -3px;
-  height: 1px;
+  height: 2px;
   background: var(--accent);
   transform: scaleX(0);
   transition: transform .22s ease;
@@ -208,7 +208,7 @@ body.view-blog .blog-sub-nav { display: flex; }
   content: "";
   position: absolute;
   left: 0; right: 0; bottom: -3px;
-  height: 1px;
+  height: 2px;
   background: var(--accent);
   transform: scaleX(0);
   transition: transform .22s ease;
