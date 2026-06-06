@@ -204,42 +204,43 @@ $(function () {
     $(this).empty().append($iframe);
   });
 
-  /* ---------- Contact form (Formspree) ---------- */
+  /* ---------- Contact form (web3forms) ---------- */
   $("#contact-form").on("submit", function (e) {
     e.preventDefault();
     var $f = $(this);
+    var $btn = $f.find("button[type=submit]");
     var $status = $f.find(".form-status");
-    var action = $f.attr("action");
-
-    if (action.indexOf("YOUR_FORM_ID") !== -1) {
-      $status.attr("class", "form-status err").text(
-        t("This form isn’t connected yet. Add your Formspree ID in index.html (see README).",
-          "Форму ще не підключено. Додайте свій Formspree ID у index.html (див. README).")
-      );
-      return;
-    }
 
     $status.attr("class", "form-status").text(t("Sending…", "Надсилання…"));
+    $btn.prop("disabled", true);
 
-    $.ajax({
-      url: action,
+    fetch("https://api.web3forms.com/submit", {
       method: "POST",
-      data: $f.serialize(),
-      dataType: "json",
-      headers: { Accept: "application/json" }
+      body: new FormData($f[0])
     })
-      .done(function () {
-        $f[0].reset();
-        $status.attr("class", "form-status ok").text(
-          t("Thank you — your message has been sent.",
-            "Дякую — ваше повідомлення надіслано.")
-        );
+      .then(function (res) { return res.json().then(function (data) { return { ok: res.ok, data: data }; }); })
+      .then(function (result) {
+        if (result.ok) {
+          $f[0].reset();
+          $status.attr("class", "form-status ok").text(
+            t("Thank you — your message has been sent.",
+              "Дякую — ваше повідомлення надіслано.")
+          );
+        } else {
+          $status.attr("class", "form-status err").text(
+            t("Something went wrong. Please email me directly.",
+              "Сталася помилка. Будь ласка, напишіть мені напряму.")
+          );
+        }
       })
-      .fail(function () {
+      .catch(function () {
         $status.attr("class", "form-status err").text(
           t("Something went wrong. Please email me directly.",
             "Сталася помилка. Будь ласка, напишіть мені напряму.")
         );
+      })
+      .finally(function () {
+        $btn.prop("disabled", false);
       });
   });
 
