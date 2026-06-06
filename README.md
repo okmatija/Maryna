@@ -3,11 +3,16 @@
 A fast, static personal website for a psychology practice and psychedelic
 integration services. Pure HTML + CSS + a little jQuery — **no build step**.
 
+Hosted on GitHub Pages at **[safeintegration.space](https://safeintegration.space)**.
+
 ```
 index.html        ← all the content (edit text here)
 css/style.css     ← colours, fonts, layout
 js/main.js        ← language toggle, navigation, form, video
-assets/           ← images (replace the placeholder .svg files)
+assets/           ← images (maryna.png portrait, leaf.png favicon)
+CNAME             ← custom domain for GitHub Pages
+robots.txt        ← search engine crawling rules
+sitemap.xml       ← sitemap for Google Search Console
 ```
 
 ## View it locally
@@ -16,7 +21,6 @@ Just open `index.html` in a browser. (Some browsers restrict local files;
 if anything misbehaves, run a tiny server instead:)
 
 ```bash
-cd /mnt/c/Dev/Maryna
 python3 -m http.server 8000
 # then open http://localhost:8000
 ```
@@ -28,45 +32,43 @@ python3 -m http.server 8000
   - `<span class="lang-uk">Українською…</span>`
 
   Edit both. The site shows the right one based on the selected flag.
-  *(Replace the placeholder Ukrainian — it’s a first draft for review.)*
 
 - **Layout blocks** you can stack freely inside any `.wrap`:
   - Two columns (text + image): copy a `<div class="row two-col">…</div>`
   - One column of text: copy a `<div class="row one-col">…</div>`
 
-- **Images:** replace `assets/maryna.svg` and `assets/park.svg` with your own
-  (a `.jpg` is fine — update the `src` in `index.html`). Keep them reasonably
-  sized (~1500px wide max) so the page stays fast.
+- **Images:** replace `assets/maryna.png` with a new portrait if needed.
+  Keep images reasonably sized (~1500px wide max) so the page stays fast.
 
-- **Ukrainian-only service (“Кола інтеграції” / Integration Circles):** it’s the
+- **Ukrainian-only service ("Кола інтеграції" / Integration Circles):** it's the
   `<article id="service-circles" … class="… lang-uk">` block and its sub-nav
-  link. Because they’re marked `lang-uk`, they only appear in Ukrainian.
+  link. Because they're marked `lang-uk`, they only appear in Ukrainian.
 
-## The contact form (sends to your email)
+- **Blog** is Ukrainian-only (`.blog-only` CSS class). The blog sub-nav has
+  entries for the video lecture and two text articles. Add new articles by
+  copying a `<article class="blog-item">` block and adding a matching link in
+  the `.blog-sub-nav`.
 
-The form uses **[Formspree](https://formspree.io)** — free, and works on plain
-static hosting (no server needed).
+## The contact form
 
-1. Sign up at formspree.io with the email where you want to *receive* messages.
-2. Create a new form; copy its endpoint, e.g. `https://formspree.io/f/abcdwxyz`.
-3. In `index.html`, find `action="https://formspree.io/f/YOUR_FORM_ID"` and
-   replace `YOUR_FORM_ID` with your id (`abcdwxyz`).
+The form uses **[web3forms](https://web3forms.com)** — free, works on plain
+static hosting (no server needed). Submissions arrive in Maryna's inbox and
+the visitor sees a thank-you message without leaving the page.
 
-That’s it — submissions arrive in your inbox, and the visitor sees a thank-you
-message without leaving the page.
+The `access_key` in `index.html` is already configured. To change the
+destination email, update the key at web3forms.com.
 
 ## Blog videos
 
-Each video is a `<div class="yt" data-id="VIDEO_ID_1">`. Replace `VIDEO_ID_1`
+Each video is a `<div class="yt" data-id="VIDEO_ID">`. Replace `VIDEO_ID`
 with the YouTube id — the part after `v=` in a URL
 (`https://youtube.com/watch?v=`**`dQw4w9WgXcQ`**). The video only loads when a
 visitor clicks it, so the page stays fast.
 
-## Publishing (very simple hosting)
+## Publishing
 
-Any of these host static files for free — drag-and-drop or connect a folder:
+The site is deployed via **GitHub Pages** from the `main` branch. Pushing to
+`main` automatically updates the live site within a minute or two.
 
-- **Netlify** (drag the whole folder onto app.netlify.com) — easiest.
-- **Cloudflare Pages** or **GitHub Pages** — connect a repo, done.
-
-A custom domain (e.g. `marynazagorodnia.com`) can be pointed at any of them.
+The custom domain `safeintegration.space` is configured via the `CNAME` file
+and DNS records at the domain registrar.

@@ -2,10 +2,10 @@
    Maryna Zagorodnia — site behaviour (jQuery)
    - in-page view switching (no reloads)
    - language toggle (remembered)
-   - services sub-nav smooth scroll
+   - services sub-nav
    - gentle reveal-on-scroll
    - click-to-load YouTube
-   - Formspree contact form
+   - web3forms contact form
    ============================================================ */
 $(function () {
   "use strict";
