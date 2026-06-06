@@ -108,23 +108,32 @@ $(function () {
     showSection($(this).data("section"));
   });
 
-  // Services sub-nav: scroll to the chosen service
+  // Services sub-nav: show the chosen service, hide the rest
+  function showService(id) {
+    $(".service").hide();
+    $("#" + id).show();
+    $(".sub-link").removeClass("active");
+    $('.sub-link[href="#' + id + '"]').addClass("active");
+    window.scrollTo(0, 0);
+  }
+
   $(".sub-link").on("click", function (e) {
     e.preventDefault();
-    scrollToEl($(this).attr("href"));
+    var id = $(this).attr("href").replace("#", "");
+    showService(id);
   });
 
-  // Scroll-spy: highlight the sub-nav link for the service in view
-  function syncSubNav() {
-    if (!$("body").hasClass("view-services")) return;
-    var headerH = $(".site-header").outerHeight() + 40;
-    var activeId = null;
-    $(".service:visible").each(function () {
-      if (this.getBoundingClientRect().top <= headerH) activeId = this.id;
-    });
-    $(".sub-link").removeClass("active");
-    if (activeId) $('.sub-link[href="#' + activeId + '"]').addClass("active");
-  }
+  // When entering the services section, show the first visible service
+  var _origShowSection = showSection;
+  showSection = function (name, opts) {
+    _origShowSection(name, opts);
+    if (name === "services") {
+      var firstId = $(".sub-link:visible").first().attr("href").replace("#", "");
+      showService(firstId);
+    }
+  };
+
+  function syncSubNav() {}
 
   // Throttled scroll handler
   var ticking = false;

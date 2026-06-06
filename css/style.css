@@ -208,8 +208,7 @@ body.view-services .sub-nav { display: flex; }
   box-shadow: 0 12px 30px rgba(51, 48, 43, 0.12);
 }
 
-.service { margin-bottom: 72px; scroll-margin-top: var(--header-h); }
-.service:last-child { margin-bottom: 0; }
+.service { display: none; }
 
 .blog-item { margin-bottom: 64px; }
 .blog-item:last-child { margin-bottom: 0; }
