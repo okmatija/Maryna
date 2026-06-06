@@ -123,13 +123,30 @@ $(function () {
     showService(id);
   });
 
-  // When entering the services section, show the first visible service
+  // Blog sub-nav: show the chosen post, hide the rest
+  function showBlogItem(id) {
+    $(".blog-item").hide();
+    $("#" + id).show();
+    $(".blog-link").removeClass("active");
+    $('.blog-link[href="#' + id + '"]').addClass("active");
+    window.scrollTo(0, 0);
+  }
+
+  $(".blog-link").on("click", function (e) {
+    e.preventDefault();
+    showBlogItem($(this).attr("href").replace("#", ""));
+  });
+
+  // When entering a section, show the first item in sub-navs
   var _origShowSection = showSection;
   showSection = function (name, opts) {
     _origShowSection(name, opts);
     if (name === "services") {
-      var firstId = $(".sub-link:visible").first().attr("href").replace("#", "");
-      showService(firstId);
+      var firstService = $(".sub-link:visible").first().attr("href").replace("#", "");
+      showService(firstService);
+    }
+    if (name === "blog") {
+      showBlogItem($(".blog-link").first().attr("href").replace("#", ""));
     }
   };
 
