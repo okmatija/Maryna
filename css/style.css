@@ -49,18 +49,9 @@ a { color: var(--accent); text-decoration: none; }
 a:hover { color: var(--accent-2); }
 
 /* ---------- Language toggle (CSS-driven, instant) ---------- */
-.lang-uk { display: none; }
-.lang-en { display: inline; }
-body.lang-uk .lang-en { display: none; }
-body.lang-uk .lang-uk { display: inline; }
-
-/* Block-level language wrappers should behave as blocks when shown */
-div.lang-en, div.lang-uk,
-p.lang-en,   p.lang-uk { display: block; }
-body.lang-en div.lang-uk, body.lang-en p.lang-uk { display: none; }
-body.lang-uk div.lang-en, body.lang-uk p.lang-en { display: none; }
-body.lang-en div.lang-en, body.lang-en p.lang-en { display: block; }
-body.lang-uk div.lang-uk, body.lang-uk p.lang-uk { display: block; }
+/* Two rules only. Each element keeps its natural display value when shown. */
+body:not(.lang-uk) .lang-uk { display: none; }
+body.lang-uk       .lang-en { display: none; }
 
 /* ============================================================
    HEADER (sticky)
@@ -184,6 +175,11 @@ body.view-services .sub-nav { display: flex; }
   align-items: center;
 }
 .one-col { max-width: 760px; }
+
+/* Credentials / training list */
+.creds { padding-left: 1.2em; margin: 0 0 1.1em; }
+.creds li { margin-bottom: .55em; }
+.creds li::marker { color: var(--accent); }
 
 .col-media .framed {
   width: 100%;

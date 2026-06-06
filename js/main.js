@@ -10,7 +10,7 @@
 $(function () {
   "use strict";
 
-  var SECTIONS = ["about", "services", "contact", "blog"];
+  var SECTIONS = ["home", "about", "services", "contact", "blog"];
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   /* ---------- small helpers ---------- */
@@ -38,13 +38,13 @@ $(function () {
   /* ---------- view switching ---------- */
   function showSection(name, opts) {
     opts = opts || {};
-    if (SECTIONS.indexOf(name) === -1) name = "about";
+    if (SECTIONS.indexOf(name) === -1) name = "home";
 
     $(".section").removeClass("is-active");
     $("#" + name).addClass("is-active");
 
     $("body")
-      .removeClass("view-about view-services view-contact view-blog")
+      .removeClass("view-home view-about view-services view-contact view-blog")
       .addClass("view-" + name);
 
     $(".main-nav a").removeClass("active");
@@ -209,7 +209,7 @@ $(function () {
     showSection("services", { keepHash: true, noScroll: true });
     setTimeout(function () { scrollToEl("#" + hash); }, 60);
   } else {
-    showSection(SECTIONS.indexOf(hash) !== -1 ? hash : "about", { keepHash: true });
+    showSection(SECTIONS.indexOf(hash) !== -1 ? hash : "home", { keepHash: true });
   }
 
   updateHeaderHeight();
