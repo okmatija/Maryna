@@ -18,7 +18,7 @@ window.SITE_CONFIG = {
 
   languages: {
     en: true,
-    uk: true,
+    uk: false,
   },
 
   sections: {
