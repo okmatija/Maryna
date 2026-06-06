@@ -212,7 +212,7 @@ body.view-services .sub-nav { display: flex; }
 
 /* Credentials / training list */
 .creds { padding-left: 1.2em; margin: 0 0 1.1em; }
-.creds li { margin-bottom: .55em; }
+.creds li { margin-bottom: .25em; }
 .creds li::marker { color: var(--accent); }
 
 .col-media .framed {
