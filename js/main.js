@@ -12,6 +12,7 @@ $(function () {
 
   var SECTIONS = ["home", "about", "services", "contact", "blog"];
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var forcedLang = null; // set by applyConfig() when only one language is enabled
 
   /* ---------- small helpers ---------- */
   function currentLang() {
@@ -38,7 +39,7 @@ $(function () {
   /* ---------- view switching ---------- */
   function showSection(name, opts) {
     opts = opts || {};
-    if (SECTIONS.indexOf(name) === -1) name = "home";
+    if (SECTIONS.indexOf(name) === -1) name = SECTIONS[0];
 
     $(".section").removeClass("is-active");
     $("#" + name).addClass("is-active");
@@ -85,17 +86,75 @@ $(function () {
     revealInView();
   }
 
+  /* ---------- config-driven on/off switches (js/config.js) ---------- */
+  function eachFalse(map, fn) {
+    if (!map) return;
+    Object.keys(map).forEach(function (k) {
+      if (map[k] === false) fn(k);
+    });
+  }
+
+  function applyConfig() {
+    var cfg = window.SITE_CONFIG || {};
+
+    // Languages — remove a disabled language's content entirely.
+    var langs = cfg.languages || {};
+    var enOn = langs.en !== false;
+    var ukOn = langs.uk !== false;
+    if (!enOn && !ukOn) enOn = true; // never hide everything
+
+    // (exclude <body>, whose lang-* class is the active-language state, not content)
+    if (!ukOn) $(".lang-uk").not("body").remove();
+    if (!enOn) $(".lang-en").not("body").remove();
+    if (!enOn || !ukOn) {
+      $(".lang-toggle").remove();      // only one language: drop the switcher
+      forcedLang = ukOn ? "uk" : "en"; // and lock to it
+    }
+
+    // Sections — remove the section and its nav link (plus its sub-nav).
+    eachFalse(cfg.sections, function (id) {
+      $("#" + id).remove();
+      $('[data-section="' + id + '"]').remove();
+    });
+    if (cfg.sections) {
+      if (cfg.sections.services === false) $(".sub-nav").remove();
+      if (cfg.sections.blog === false) $(".blog-sub-nav").remove();
+    }
+
+    // Individual services — remove the article and its sub-nav link.
+    eachFalse(cfg.services, function (id) {
+      $("#" + id).remove();
+      $('.sub-link[href="#' + id + '"]').remove();
+    });
+
+    // Individual blog posts — remove the article and its sub-nav link.
+    eachFalse(cfg.blogPosts, function (id) {
+      $("#" + id).remove();
+      $('.blog-link[href="#' + id + '"]').remove();
+    });
+
+    // Keep the navigable section list in sync with what survived.
+    SECTIONS = SECTIONS.filter(function (id) { return $("#" + id).length > 0; });
+  }
+
   /* ============================================================
      WIRING
      ============================================================ */
 
+  // Apply the on/off switches first, so everything below sees the trimmed page.
+  applyConfig();
+
   // Footer year
   $("#year").text(new Date().getFullYear());
 
-  // Restore saved language
-  var saved;
-  try { saved = localStorage.getItem("lang"); } catch (e) {}
-  setLang(saved || "en");
+  // Restore saved language (or lock to the one the config forces)
+  if (forcedLang) {
+    setLang(forcedLang);
+  } else {
+    var saved;
+    try { saved = localStorage.getItem("lang"); } catch (e) {}
+    setLang(saved || "en");
+  }
 
   // Flag clicks
   $(".flag").on("click", function () {
@@ -142,11 +201,12 @@ $(function () {
   showSection = function (name, opts) {
     _origShowSection(name, opts);
     if (name === "services") {
-      var firstService = $(".sub-link:visible").first().attr("href").replace("#", "");
-      showService(firstService);
+      var $firstService = $(".sub-link:visible").first();
+      if ($firstService.length) showService($firstService.attr("href").replace("#", ""));
     }
     if (name === "blog") {
-      showBlogItem($(".blog-link").first().attr("href").replace("#", ""));
+      var $firstPost = $(".blog-link").first();
+      if ($firstPost.length) showBlogItem($firstPost.attr("href").replace("#", ""));
     }
   };
 
@@ -251,7 +311,7 @@ $(function () {
     showSection("services", { keepHash: true, noScroll: true });
     setTimeout(function () { scrollToEl("#" + hash); }, 60);
   } else {
-    showSection(SECTIONS.indexOf(hash) !== -1 ? hash : "home", { keepHash: true });
+    showSection(SECTIONS.indexOf(hash) !== -1 ? hash : SECTIONS[0], { keepHash: true });
   }
 
   updateHeaderHeight();
