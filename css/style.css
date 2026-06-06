@@ -164,8 +164,7 @@ body.lang-uk .flag-uk { opacity: 1; }
   flex-wrap: wrap;
   align-items: center;
   gap: 0 12px;
-  margin-top: 10px;
-  padding-top: 10px;
+  padding: 10px 24px;
   border-top: 1px solid var(--line);
 }
 body.view-services .sub-nav { display: flex; }
@@ -195,8 +194,7 @@ body.view-services .sub-nav { display: flex; }
   justify-content: center;
   flex-wrap: wrap;
   gap: 0 26px;
-  margin-top: 10px;
-  padding-top: 10px;
+  padding: 10px 24px;
   border-top: 1px solid var(--line);
 }
 body.view-blog .blog-sub-nav { display: flex; }
