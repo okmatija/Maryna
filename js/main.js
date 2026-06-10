@@ -190,6 +190,14 @@ $(function () {
     showService(id);
   });
 
+  // In-page links straight to a specific service (e.g. from the Home intro)
+  $(document).on("click", "a.service-link", function (e) {
+    e.preventDefault();
+    var id = $(this).attr("href").replace("#", "");
+    showSection("services", { noScroll: true });
+    showService(id);
+  });
+
   // Blog sub-nav: show the chosen post, hide the rest
   function showBlogItem(id) {
     $(".blog-item").hide();

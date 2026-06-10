@@ -31,6 +31,7 @@ window.SITE_CONFIG = {
 
   services: {
     "service-therapy":     true,
+    "service-walk":        true,
     "service-integration": true,
     "service-circles":     true,
   },
