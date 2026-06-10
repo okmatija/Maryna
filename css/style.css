@@ -257,6 +257,15 @@ body.view-blog .blog-sub-nav { display: flex; }
 
 .service { display: none; }
 
+/* Short serif tagline under a service title (e.g. Breath. Walk. Talk.) */
+.service-tagline {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--accent);
+  margin-top: -0.2em;
+}
+
 .blog-item { margin-bottom: 64px; }
 .blog-item:last-child { margin-bottom: 0; }
 
