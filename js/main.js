@@ -94,7 +94,15 @@ $(function () {
     });
   }
 
+  // Preview override: add ?phoebe to any URL (e.g. safeintegration.space/?phoebe)
+  // to show the WHOLE site, ignoring every on/off switch in js/config.js — handy
+  // for previewing content that is currently disabled. (?pheobe works too.)
+  function showEverything() {
+    return /ph(oe|eo)be/i.test(location.search);
+  }
+
   function applyConfig() {
+    if (showEverything()) return; // skip all removal — nothing gets hidden
     var cfg = window.SITE_CONFIG || {};
 
     // Languages — remove a disabled language's content entirely.
