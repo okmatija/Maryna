@@ -43,7 +43,7 @@ h1, h2, h3 {
 }
 h1 { font-size: clamp(2rem, 4.5vw, 3.1rem); margin: 0 0 .6em; }
 h2 { font-size: clamp(1.5rem, 3vw, 2.1rem); margin: 0 0 .5em; }
-h3 { font-size: clamp(1.1rem, 2vw, 1.35rem); margin: 1.4em 0 .4em; color: var(--accent); }
+h3 { font-size: clamp(1.1rem, 2vw, 1.35rem); margin: 1.4em 0 .4em; color: var(--ink); }
 p  { margin: 0 0 1.1em; }
 
 a { color: var(--accent); text-decoration: none; }
@@ -171,6 +171,7 @@ body.view-services .sub-nav { display: flex; }
 .sub-nav a {
   position: relative;
   color: var(--muted);
+  font-weight: 500;
   font-size: .95rem;
   padding: 2px 0;
 }
@@ -201,6 +202,7 @@ body.view-blog .blog-sub-nav { display: flex; }
 .blog-link {
   position: relative;
   color: var(--muted);
+  font-weight: 500;
   font-size: .95rem;
   padding: 2px 0;
 }
@@ -260,9 +262,8 @@ body.view-blog .blog-sub-nav { display: flex; }
 /* Short serif tagline under a service title (e.g. Breath. Walk. Talk.) */
 .service-tagline {
   font-family: var(--serif);
-  font-style: italic;
   font-size: 1.2rem;
-  color: var(--accent);
+  color: var(--ink);
   margin-top: -0.2em;
 }
 
