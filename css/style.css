@@ -84,6 +84,7 @@ body:not(.lang-uk) .blog-only { display: none; }
   background: rgba(250, 246, 240, 0.92);
   backdrop-filter: saturate(140%) blur(8px);
   border-bottom: 1px solid var(--line);
+  user-select: none;
 }
 .header-inner {
   position: relative;
@@ -91,7 +92,6 @@ body:not(.lang-uk) .blog-only { display: none; }
   margin: 0 auto;
   padding: 18px 24px 14px;
   text-align: center;
-  user-select: none;
 }
 
 .brand {
