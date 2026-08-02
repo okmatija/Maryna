@@ -43,6 +43,9 @@ h1, h2, h3 {
 }
 h1 { font-size: clamp(2rem, 4.5vw, 3.1rem); margin: 0 0 .6em; }
 h2 { font-size: clamp(1.5rem, 3vw, 2.1rem); margin: 0 0 .5em; }
+/* An h1 that keeps the visual size of an h2 — pages need a real h1 for
+   search engines without changing how the heading looks. */
+h1.as-h2 { font-size: clamp(1.5rem, 3vw, 2.1rem); margin: 0 0 .5em; }
 h3 { font-size: clamp(1.1rem, 2vw, 1.35rem); margin: 1.4em 0 .4em; color: var(--ink); }
 p  { margin: 0 0 1.1em; }
 
@@ -253,6 +256,7 @@ body.view-blog .blog-sub-nav { display: flex; }
 
 .col-media .framed {
   width: 100%;
+  height: auto;
   border-radius: 10px;
   box-shadow: 0 12px 30px rgba(51, 48, 43, 0.12);
 }

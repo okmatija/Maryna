@@ -6,19 +6,32 @@ integration services. Pure HTML + CSS + a little jQuery — **no build step**.
 Hosted on GitHub Pages at **[safeintegration.space](https://safeintegration.space)**.
 
 ```
-index.html        ← all the content (edit text here)
-css/style.css     ← colours, fonts, layout
-js/main.js        ← language toggle, navigation, form, video
-assets/           ← images (maryna.png portrait, leaf.png favicon)
-CNAME             ← custom domain for GitHub Pages
-robots.txt        ← search engine crawling rules
-sitemap.xml       ← sitemap for Google Search Console
+index.html                    ← Home page
+about/index.html              ← About page
+individual-therapy/           ← service page
+walk-and-talk-therapy/        ← service page (Breath. Walk. Talk.)
+psychedelic-integration/      ← service page
+integration-circles/          ← Ukrainian-only service page
+contact/index.html            ← Contact page (web3forms)
+blog/index.html               ← Ukrainian-only blog (video + articles)
+css/style.css                 ← colours, fonts, layout
+js/config.js                  ← on/off switches for languages/pages
+js/main.js                    ← language toggle, form, video, legacy links
+assets/                       ← images (maryna.webp/jpg portrait, leaf.png favicon)
+CNAME                         ← custom domain for GitHub Pages
+robots.txt                    ← search engine crawling rules
+sitemap.xml                   ← sitemap for Google Search Console
 ```
+
+Each page is a real URL with its own `<title>`, meta description and H1, so
+search engines can rank every service separately. Old one-page links like
+`safeintegration.space/#service-integration` still work — `js/main.js`
+redirects them to the right page.
 
 ## View it locally
 
-Just open `index.html` in a browser. (Some browsers restrict local files;
-if anything misbehaves, run a tiny server instead:)
+Pages use absolute paths (`/css/...`), so run a tiny server from the repo
+root (opening the file directly won't find the styles):
 
 ```bash
 python3 -m http.server 8000
@@ -27,27 +40,33 @@ python3 -m http.server 8000
 
 ## Editing content
 
-- **Text** lives in `index.html`. Every piece of text appears twice:
+- **Text** lives in each page's `index.html`. Every piece of text appears twice:
   - `<span class="lang-en">English…</span>`
   - `<span class="lang-uk">Українською…</span>`
 
   Edit both. The site shows the right one based on the selected flag.
 
-- **Layout blocks** you can stack freely inside any `.wrap`:
-  - Two columns (text + image): copy a `<div class="row two-col">…</div>`
-  - One column of text: copy a `<div class="row one-col">…</div>`
+- **The header and footer are duplicated in every page** (that's the price of
+  having no build step). If you change the nav, flags, or footer, copy the
+  change to all eight `index.html` files.
 
-- **Images:** replace `assets/maryna.png` with a new portrait if needed.
-  Keep images reasonably sized (~1500px wide max) so the page stays fast.
+- **Images:** the portrait is served as `assets/maryna.webp` (with
+  `assets/maryna.jpg` fallback); `assets/maryna.png` is the full-quality
+  original. To replace it, overwrite the png and regenerate:
+  `convert maryna.png -strip -quality 85 maryna.jpg` and
+  `convert maryna.png -strip -quality 80 maryna.webp`.
 
-- **Ukrainian-only service ("Кола інтеграції" / Integration Circles):** it's the
-  `<article id="service-circles" … class="… lang-uk">` block and its sub-nav
-  link. Because they're marked `lang-uk`, they only appear in Ukrainian.
+- **Ukrainian-only pages** (`/blog/`, `/integration-circles/`): their body tag
+  carries `class="lang-uk … uk-page"` — they always display Ukrainian, and the
+  flag switcher sends English visitors back to the home page.
 
-- **Blog** is Ukrainian-only (`.blog-only` CSS class). The blog sub-nav has
-  entries for the video lecture and two text articles. Add new articles by
-  copying a `<article class="blog-item">` block and adding a matching link in
-  the `.blog-sub-nav`.
+## Analytics
+
+Every page loads a [GoatCounter](https://www.goatcounter.com) snippet
+(privacy-friendly, free, no cookie banner needed). For it to start counting,
+register the code **safeintegration** at goatcounter.com — the dashboard will
+then live at `https://safeintegration.goatcounter.com`. Until the account
+exists the snippet does nothing (it fails silently).
 
 ## The contact form
 
@@ -55,7 +74,7 @@ The form uses **[web3forms](https://web3forms.com)** — free, works on plain
 static hosting (no server needed). Submissions arrive in Maryna's inbox and
 the visitor sees a thank-you message without leaving the page.
 
-The `access_key` in `index.html` is already configured. To change the
+The `access_key` in `contact/index.html` is already configured. To change the
 destination email, update the key at web3forms.com.
 
 ## Blog videos

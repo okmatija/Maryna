@@ -1,8 +1,9 @@
 /* ============================================================
    Maryna Zagorodnia — site behaviour (jQuery)
-   - in-page view switching (no reloads)
+   - multi-page site: one URL per page, shared header
+   - legacy #hash links from the old one-page site redirect
    - language toggle (remembered)
-   - services sub-nav
+   - config-driven on/off switches (js/config.js)
    - gentle reveal-on-scroll
    - click-to-load YouTube
    - web3forms contact form
@@ -10,9 +11,34 @@
 $(function () {
   "use strict";
 
-  var SECTIONS = ["home", "about", "services", "contact", "blog"];
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var forcedLang = null; // set by applyConfig() when only one language is enabled
+  var ukOnlyPage = $("body").hasClass("uk-page"); // blog & integration circles
+
+  /* ---------- legacy hash links (old one-page site) ---------- */
+  // Old links like safeintegration.space/#service-integration must keep
+  // working — send them to the page that now holds that content.
+  var LEGACY = {
+    "about":               "/about/",
+    "services":            "/individual-therapy/",
+    "contact":             "/contact/",
+    "blog":                "/blog/",
+    "service-therapy":     "/individual-therapy/",
+    "service-walk":        "/walk-and-talk-therapy/",
+    "service-integration": "/psychedelic-integration/",
+    "service-circles":     "/integration-circles/",
+    "blog-video":          "/blog/#blog-video",
+    "blog-post-1":         "/blog/#blog-post-1",
+    "blog-post-2":         "/blog/#blog-post-2"
+  };
+  var path = location.pathname.replace(/index\.html$/, "");
+  if (path === "/" && location.hash) {
+    var legacyTarget = LEGACY[location.hash.replace("#", "")];
+    if (legacyTarget) {
+      location.replace(legacyTarget);
+      return;
+    }
+  }
 
   /* ---------- small helpers ---------- */
   function currentLang() {
@@ -36,52 +62,17 @@ $(function () {
     });
   }
 
-  /* ---------- view switching ---------- */
-  function showSection(name, opts) {
-    opts = opts || {};
-    if (SECTIONS.indexOf(name) === -1) name = SECTIONS[0];
-
-    $(".section").removeClass("is-active");
-    $("#" + name).addClass("is-active");
-
-    $("body")
-      .removeClass("view-home view-about view-services view-contact view-blog")
-      .addClass("view-" + name);
-
-    $(".main-nav a").removeClass("active");
-    $('.main-nav a[data-section="' + name + '"]').addClass("active");
-
-    if (!opts.keepHash) {
-      if (history.replaceState) history.replaceState(null, "", "#" + name);
-      else location.hash = name;
-    }
-    if (!opts.noScroll) window.scrollTo(0, 0);
-
-    updateHeaderHeight();
-    revealInView();
-  }
-
-  /* ---------- smooth scroll to an element (honours header) ---------- */
-  function scrollToEl(selector) {
-    var $el = $(selector);
-    if (!$el.length) return;
-    var headerH = $(".site-header").outerHeight();
-    var top = $el.offset().top - headerH - 14;
-    if (reduceMotion) {
-      window.scrollTo(0, top);
-    } else {
-      $("html, body").animate({ scrollTop: top }, 450);
-    }
-  }
-
   /* ---------- language ---------- */
   function setLang(lang) {
     if (lang !== "uk") lang = "en";
+    try { localStorage.setItem("lang", lang); } catch (e) {}
+    // Ukrainian-only pages have no English content — go home instead.
+    if (ukOnlyPage && lang === "en") {
+      location.href = "/";
+      return;
+    }
     $("body").removeClass("lang-en lang-uk").addClass("lang-" + lang);
     document.documentElement.lang = lang;
-    try { localStorage.setItem("lang", lang); } catch (e) {}
-    // Blog is Ukrainian-only; redirect to home if switching away
-    if (lang === "en" && $("body").hasClass("view-blog")) showSection("home");
     updateHeaderHeight();
     revealInView();
   }
@@ -101,38 +92,44 @@ $(function () {
     return /phoebe/i.test(location.search);
   }
 
+  // Which page a service id now lives on (for hiding sub-nav links).
+  var SERVICE_PAGE = {
+    "service-therapy":     "/individual-therapy/",
+    "service-walk":        "/walk-and-talk-therapy/",
+    "service-integration": "/psychedelic-integration/",
+    "service-circles":     "/integration-circles/"
+  };
+
   function applyConfig() {
     if (showEverything()) return; // skip all removal — nothing gets hidden
     var cfg = window.SITE_CONFIG || {};
 
     // Languages — remove a disabled language's content entirely.
+    // (Ukrainian-only pages keep their content: they are only reachable
+    // by direct link while their language is switched off.)
     var langs = cfg.languages || {};
     var enOn = langs.en !== false;
     var ukOn = langs.uk !== false;
     if (!enOn && !ukOn) enOn = true; // never hide everything
 
-    // (exclude <body>, whose lang-* class is the active-language state, not content)
-    if (!ukOn) $(".lang-uk").not("body").remove();
-    if (!enOn) $(".lang-en").not("body").remove();
-    if (!enOn || !ukOn) {
-      $(".lang-toggle").remove();      // only one language: drop the switcher
-      forcedLang = ukOn ? "uk" : "en"; // and lock to it
+    if (!ukOnlyPage) {
+      // (exclude <body>, whose lang-* class is the active-language state, not content)
+      if (!ukOn) $(".lang-uk").not("body").remove();
+      if (!enOn) $(".lang-en").not("body").remove();
+      if (!enOn || !ukOn) {
+        $(".lang-toggle").remove();      // only one language: drop the switcher
+        forcedLang = ukOn ? "uk" : "en"; // and lock to it
+      }
     }
 
-    // Sections — remove the section and its nav link (plus its sub-nav).
+    // Sections — every section is its own page now; hide its nav link.
     eachFalse(cfg.sections, function (id) {
-      $("#" + id).remove();
-      $('[data-section="' + id + '"]').remove();
+      $('.main-nav a[data-view="' + id + '"]').remove();
     });
-    if (cfg.sections) {
-      if (cfg.sections.services === false) $(".sub-nav").remove();
-      if (cfg.sections.blog === false) $(".blog-sub-nav").remove();
-    }
 
-    // Individual services — remove the article and its sub-nav link.
+    // Individual services — hide their sub-nav links.
     eachFalse(cfg.services, function (id) {
-      $("#" + id).remove();
-      $('.sub-link[href="#' + id + '"]').remove();
+      $('.sub-nav a[href="' + SERVICE_PAGE[id] + '"]').remove();
     });
 
     // Individual blog posts — remove the article and its sub-nav link.
@@ -140,9 +137,6 @@ $(function () {
       $("#" + id).remove();
       $('.blog-link[href="#' + id + '"]').remove();
     });
-
-    // Keep the navigable section list in sync with what survived.
-    SECTIONS = SECTIONS.filter(function (id) { return $("#" + id).length > 0; });
   }
 
   /* ============================================================
@@ -155,8 +149,12 @@ $(function () {
   // Footer year
   $("#year").text(new Date().getFullYear());
 
-  // Restore saved language (or lock to the one the config forces)
-  if (forcedLang) {
+  // Restore saved language (or lock to the one the config forces).
+  // Ukrainian-only pages always show Ukrainian, whatever was saved.
+  if (ukOnlyPage) {
+    $("body").removeClass("lang-en").addClass("lang-uk");
+    document.documentElement.lang = "uk";
+  } else if (forcedLang) {
     setLang(forcedLang);
   } else {
     var saved;
@@ -169,33 +167,13 @@ $(function () {
     setLang($(this).data("lang"));
   });
 
-  // Main nav + any link that carries data-section (e.g. "Get in touch")
-  $(document).on("click", "[data-section]", function (e) {
-    e.preventDefault();
-    showSection($(this).data("section"));
-  });
+  // Highlight the current page in the main nav (body carries view-<name>)
+  var view = (($("body").attr("class") || "").match(/view-([a-z]+)/) || [])[1];
+  if (view) $('.main-nav a[data-view="' + view + '"]').addClass("active");
 
-  // Services sub-nav: show the chosen service, hide the rest
-  function showService(id) {
-    $(".service").hide();
-    $("#" + id).show();
-    $(".sub-link").removeClass("active");
-    $('.sub-link[href="#' + id + '"]').addClass("active");
-    window.scrollTo(0, 0);
-  }
-
-  $(".sub-link").on("click", function (e) {
-    e.preventDefault();
-    var id = $(this).attr("href").replace("#", "");
-    showService(id);
-  });
-
-  // In-page links straight to a specific service (e.g. from the Home intro)
-  $(document).on("click", "a.service-link", function (e) {
-    e.preventDefault();
-    var id = $(this).attr("href").replace("#", "");
-    showSection("services", { noScroll: true });
-    showService(id);
+  // Highlight the current page in the services sub-nav
+  $(".sub-nav a").each(function () {
+    if ($(this).attr("href") === path) $(this).addClass("active");
   });
 
   // Blog sub-nav: show the chosen post, hide the rest
@@ -212,21 +190,14 @@ $(function () {
     showBlogItem($(this).attr("href").replace("#", ""));
   });
 
-  // When entering a section, show the first item in sub-navs
-  var _origShowSection = showSection;
-  showSection = function (name, opts) {
-    _origShowSection(name, opts);
-    if (name === "services") {
-      var $firstService = $(".sub-link:visible").first();
-      if ($firstService.length) showService($firstService.attr("href").replace("#", ""));
+  // On the blog page, open the post from the URL hash (or the first one)
+  if ($("body").hasClass("view-blog")) {
+    var post = (location.hash || "").replace("#", "");
+    if (!post || !$("#" + post).length) {
+      post = ($(".blog-link").first().attr("href") || "").replace("#", "");
     }
-    if (name === "blog") {
-      var $firstPost = $(".blog-link").first();
-      if ($firstPost.length) showBlogItem($firstPost.attr("href").replace("#", ""));
-    }
-  };
-
-  function syncSubNav() {}
+    if (post) showBlogItem(post);
+  }
 
   // Throttled scroll handler
   var ticking = false;
@@ -235,7 +206,6 @@ $(function () {
     ticking = true;
     window.requestAnimationFrame(function () {
       revealInView();
-      syncSubNav();
       ticking = false;
     });
   });
@@ -267,8 +237,8 @@ $(function () {
     e.preventDefault();
     var id = $(this).data("id");
     if (!id || String(id).indexOf("VIDEO_ID") !== -1) {
-      alert(t("Add a YouTube video id in index.html (data-id).",
-              "Додайте ідентифікатор відео YouTube у index.html (data-id)."));
+      alert(t("Add a YouTube video id in the page (data-id).",
+              "Додайте ідентифікатор відео YouTube на сторінці (data-id)."));
       return;
     }
     var $iframe = $("<iframe>", {
@@ -320,16 +290,7 @@ $(function () {
       });
   });
 
-  /* ---------- initial route ---------- */
-  var hash = (location.hash || "").replace("#", "");
-  if (hash.indexOf("service-") === 0) {
-    // deep link to a specific service
-    showSection("services", { keepHash: true, noScroll: true });
-    setTimeout(function () { scrollToEl("#" + hash); }, 60);
-  } else {
-    showSection(SECTIONS.indexOf(hash) !== -1 ? hash : SECTIONS[0], { keepHash: true });
-  }
-
+  /* ---------- initial paint ---------- */
   updateHeaderHeight();
   revealInView();
 });

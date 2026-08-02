@@ -7,12 +7,16 @@
    • languages  — turn a language off to remove ALL of its content.
                   If only one language is left, the flag switcher is
                   hidden and the site is locked to that language.
-   • sections   — the items in the top navigation.
-   • services   — the individual services (Services sub-nav).
+                  (The Ukrainian-only pages /blog/ and /integration-circles/
+                  keep their content but become unlinked.)
+   • sections   — the items in the top navigation. Each section is its
+                  own page now; switching one off hides its nav link
+                  (the page stays reachable by direct URL).
+   • services   — the individual services (Services sub-nav links).
    • blogPosts  — the individual blog articles (Blog sub-nav).
 
-   Keys match the ids already used in index.html, so nothing else needs
-   to change when you toggle something.
+   Keys match the ids used in the pages, so nothing else needs to
+   change when you toggle something.
    ===================================================================== */
 window.SITE_CONFIG = {
 

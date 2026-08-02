@@ -11,28 +11,23 @@
   <meta name="geo.region" content="GB-LND" />
   <meta name="geo.placename" content="London, Hampstead Heath" />
 
-  <!-- Canonical & language alternates -->
   <link rel="canonical" href="https://safeintegration.space/" />
-  <link rel="alternate" hreflang="en" href="https://safeintegration.space/" />
-  <link rel="alternate" hreflang="uk" href="https://safeintegration.space/" />
-  <link rel="alternate" hreflang="x-default" href="https://safeintegration.space/" />
 
   <!-- Open Graph (social sharing previews) -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://safeintegration.space/" />
   <meta property="og:title" content="Maryna Zagorodnia — Psychedelic Integration Therapist, London" />
   <meta property="og:description" content="UK-registered psychotherapist offering psychedelic integration therapy and individual therapy online and in Hampstead Heath, London." />
-  <meta property="og:image" content="https://safeintegration.space/assets/maryna.png" />
+  <meta property="og:image" content="https://safeintegration.space/assets/maryna.jpg" />
   <meta property="og:image:alt" content="Portrait of Maryna Zagorodnia" />
   <meta property="og:locale" content="en_GB" />
-  <meta property="og:locale:alternate" content="uk_UA" />
   <meta property="og:site_name" content="Maryna Zagorodnia" />
 
   <!-- Twitter / X card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Maryna Zagorodnia — Psychedelic Integration Therapist, London" />
   <meta name="twitter:description" content="UK-registered psychotherapist offering psychedelic integration therapy and individual therapy online and in Hampstead Heath, London." />
-  <meta name="twitter:image" content="https://safeintegration.space/assets/maryna.png" />
+  <meta name="twitter:image" content="https://safeintegration.space/assets/maryna.jpg" />
 
   <!-- Structured data (JSON-LD) -->
   <script type="application/ld+json">
@@ -43,9 +38,7 @@
     "jobTitle": "Psychotherapist",
     "description": "UK-registered psychotherapist specialising in psychedelic integration therapy and individual therapy. Accredited Gestalt therapist and UKCP registered member.",
     "url": "https://safeintegration.space/",
-    "image": "https://safeintegration.space/assets/maryna.png",
-    "telephone": "",
-    "email": "",
+    "image": "https://safeintegration.space/assets/maryna.jpg",
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "London",
@@ -90,18 +83,37 @@
     ]
   }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Maryna Zagorodnia — Psychotherapy & Psychedelic Integration",
+    "url": "https://safeintegration.space/",
+    "image": "https://safeintegration.space/assets/maryna.jpg",
+    "description": "Individual therapy, walk-and-talk therapy and psychedelic integration with a UKCP-registered psychotherapist — online and in Hampstead Heath, London.",
+    "priceRange": "£65 - £75",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "London",
+      "addressRegion": "England",
+      "addressCountry": "GB"
+    },
+    "areaServed": ["London", "United Kingdom", "Online"],
+    "founder": { "@type": "Person", "name": "Maryna Zagorodnia" }
+  }
+  </script>
 
   <!-- Fonts: Fraunces (headings) + Inter (body). Limited weights for speed. -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
 
-  <link rel="icon" type="image/png" href="assets/leaf.png" />
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" type="image/png" href="/assets/leaf.png" />
+  <link rel="stylesheet" href="/css/style.css" />
 </head>
 <body class="lang-en view-home">
 
-  <!-- ===================== STICKY HEADER ===================== -->
+  <!-- ===================== STICKY HEADER (same on every page) ===================== -->
   <header class="site-header">
     <div class="header-inner">
 
@@ -131,36 +143,36 @@
       </div>
 
       <!-- Name / logo -->
-      <a href="#home" class="brand" data-section="home">
+      <a href="/" class="brand">
         <span class="lang-en">Maryna Zagorodnia</span>
         <span class="lang-uk">Марина Загородня</span>
       </a>
 
       <!-- Main navigation -->
       <nav class="main-nav" aria-label="Primary">
-        <a href="#home" data-section="home"><span class="lang-en">Home</span><span class="lang-uk">Головна</span></a>
-        <a href="#about" data-section="about"><span class="lang-en">About</span><span class="lang-uk">Про мене</span></a>
-        <a href="#services" data-section="services"><span class="lang-en">Services</span><span class="lang-uk">Послуги</span></a>
-        <a href="#contact" data-section="contact"><span class="lang-en">Contact</span><span class="lang-uk">Контакти</span></a>
-        <a href="#blog" data-section="blog" class="blog-only"><span class="lang-en">Blog</span><span class="lang-uk">Блог</span></a>
+        <a href="/" data-view="home"><span class="lang-en">Home</span><span class="lang-uk">Головна</span></a>
+        <a href="/about/" data-view="about"><span class="lang-en">About</span><span class="lang-uk">Про мене</span></a>
+        <a href="/individual-therapy/" data-view="services"><span class="lang-en">Services</span><span class="lang-uk">Послуги</span></a>
+        <a href="/contact/" data-view="contact"><span class="lang-en">Contact</span><span class="lang-uk">Контакти</span></a>
+        <a href="/blog/" data-view="blog" class="blog-only"><span class="lang-en">Blog</span><span class="lang-uk">Блог</span></a>
       </nav>
 
     </div><!-- end .header-inner -->
 
-    <!-- Services sub-navigation (only visible on Services view) -->
+    <!-- Services sub-navigation (only visible on service pages) -->
     <nav class="sub-nav" aria-label="Services">
-      <a href="#service-therapy" class="sub-link">
+      <a href="/individual-therapy/" class="sub-link">
         <span class="lang-en">Individual Therapy</span><span class="lang-uk">Індивідуальна терапія</span>
       </a>
       <span class="sub-sep">|</span>
-      <a href="#service-walk" class="sub-link">Breath. Walk. Talk.</a>
+      <a href="/walk-and-talk-therapy/" class="sub-link">Breath. Walk. Talk.</a>
       <span class="sub-sep">|</span>
-      <a href="#service-integration" class="sub-link">
+      <a href="/psychedelic-integration/" class="sub-link">
         <span class="lang-en">Psychedelic Integration</span><span class="lang-uk">Психоделічна інтеграція</span>
       </a>
       <!-- Ukrainian-only extra service -->
       <span class="sub-sep lang-uk">|</span>
-      <a href="#service-circles" class="sub-link lang-uk">
+      <a href="/integration-circles/" class="sub-link lang-uk">
         <span class="lang-uk">Кола інтеграції</span>
       </a>
     </nav>
@@ -176,497 +188,44 @@
   <!-- ===================== MAIN CONTENT ===================== -->
   <main>
 
-    <!-- ---------- HOME ---------- -->
     <section id="home" class="section is-active">
       <div class="wrap">
         <div class="row two-col reveal">
           <div class="col col-text">
-            <h2>
+            <h1 class="as-h2">
               <span class="lang-en">Hello, I’m Maryna.</span>
               <span class="lang-uk">Вітаю, я Марина.</span>
-            </h2>
+            </h1>
             <div class="lang-en">
               <p>I’m a UK-registered psychotherapist offering:</p>
               <ul class="creds home-services">
-                <li><a href="#service-therapy" class="service-link"><strong>Individual Therapy</strong></a> — when something feels off and you’re tired of carrying it alone. Therapy is a space to slow down, look honestly at what’s happening, and start to shift it.</li>
-                <li><a href="#service-walk" class="service-link"><strong>Breath. Walk. Talk.</strong></a> — outdoor sessions in Hampstead Heath, London, when you want support but not another hour sitting still in front of a screen. This is therapy that moves with you, outside.</li>
-                <li><a href="#service-integration" class="service-link"><strong>Psychedelic Integration</strong></a> — when something shifted during a psychedelic experience and you’re still making sense of it, or you’re looking for a therapist who genuinely understands this world.</li>
+                <li><a href="/individual-therapy/"><strong>Individual Therapy</strong></a> — when something feels off and you’re tired of carrying it alone. Therapy is a space to slow down, look honestly at what’s happening, and start to shift it.</li>
+                <li><a href="/walk-and-talk-therapy/"><strong>Breath. Walk. Talk.</strong></a> — outdoor sessions in Hampstead Heath, London, when you want support but not another hour sitting still in front of a screen. This is therapy that moves with you, outside.</li>
+                <li><a href="/psychedelic-integration/"><strong>Psychedelic Integration</strong></a> — when something shifted during a psychedelic experience and you’re still making sense of it, or you’re looking for a therapist who genuinely understands this world.</li>
               </ul>
               <p>I work with people who are ready to look inward — whether they’re going through something difficult, or simply ready for something to shift.</p>
               <p>My approach is a blend of traditional and modern methods, drawing from psychodynamic therapy, mindfulness, and somatic practices. I also bring a focus on the present moment, helping you explore how past experiences influence your thoughts, feelings, and behaviours today.</p>
-              <p><a href="#about" data-section="about">Read more about me</a> or <a href="#contact" data-section="contact">send a request</a>.</p>
+              <p><a href="/about/">Read more about me</a> or <a href="/contact/">send a request</a>.</p>
             </div>
             <div class="lang-uk">
               <p>Я психотерапевтка, зареєстрована у Великій Британії, і пропоную:</p>
               <ul class="creds home-services">
-                <li><a href="#service-therapy" class="service-link"><strong>Індивідуальна терапія</strong></a> — коли щось відчувається не так і ви втомилися нести це наодинці. Терапія — це простір, щоб уповільнитися, чесно подивитися на те, що відбувається, і почати це змінювати.</li>
-                <li><a href="#service-walk" class="service-link"><strong>Breath. Walk. Talk.</strong></a> — сесії на свіжому повітрі в парку Гемпстед-Гіт, Лондон, коли вам потрібна підтримка, але не ще одна година нерухомого сидіння перед екраном. Це терапія, яка рухається разом із вами, назовні.</li>
-                <li><a href="#service-integration" class="service-link"><strong>Психоделічна інтеграція</strong></a> — коли щось змістилося під час психоделічного досвіду і ви досі це осмислюєте, або ви шукаєте терапевта, який по-справжньому розуміє цей світ.</li>
+                <li><a href="/individual-therapy/"><strong>Індивідуальна терапія</strong></a> — коли щось відчувається не так і ви втомилися нести це наодинці. Терапія — це простір, щоб уповільнитися, чесно подивитися на те, що відбувається, і почати це змінювати.</li>
+                <li><a href="/walk-and-talk-therapy/"><strong>Breath. Walk. Talk.</strong></a> — сесії на свіжому повітрі в парку Гемпстед-Гіт, Лондон, коли вам потрібна підтримка, але не ще одна година нерухомого сидіння перед екраном. Це терапія, яка рухається разом із вами, назовні.</li>
+                <li><a href="/psychedelic-integration/"><strong>Психоделічна інтеграція</strong></a> — коли щось змістилося під час психоделічного досвіду і ви досі це осмислюєте, або ви шукаєте терапевта, який по-справжньому розуміє цей світ.</li>
               </ul>
               <p>Я працюю з людьми, які готові зазирнути всередину — чи то вони проживають щось складне, чи просто готові до змін.</p>
               <p>Мій підхід поєднує традиційні та сучасні методи, спираючись на психодинамічну терапію, майндфулнес і соматичні практики. Я також приділяю увагу теперішньому моменту, допомагаючи вам побачити, як минулий досвід впливає на ваші думки, почуття та поведінку сьогодні.</p>
-              <p><a href="#about" data-section="about">Дізнатися більше про мене</a> або <a href="#contact" data-section="contact">надіслати запит</a>.</p>
+              <p><a href="/about/">Дізнатися більше про мене</a> або <a href="/contact/">надіслати запит</a>.</p>
             </div>
           </div>
           <div class="col col-media">
-            <img src="assets/maryna.png" alt="Portrait of Maryna" class="framed" loading="eager" />
+            <picture>
+              <source srcset="/assets/maryna.webp" type="image/webp" />
+              <img src="/assets/maryna.jpg" alt="Portrait of Maryna" class="framed" loading="eager" width="934" height="1116" />
+            </picture>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- ---------- ABOUT ---------- -->
-    <section id="about" class="section">
-      <div class="wrap">
-
-        <div class="row one-col reveal">
-          <div class="lang-en">
-            <h2>About Me</h2>
-            <p>I became a therapist because I’ve always been fascinated by stories — how they shape people, and how people shape them. A friend put it more bluntly: “You should be charging for what you do to us.” That landed. So did the fact that training in psychology was a pretty thorough — if not always easy — way to understand myself.</p>
-            <p>Originally from Ukraine, I’ve lived through the fall of the USSR, multiple economic crises, revolutions, and the full-scale war. That kind of environment teaches you resilience — but it also teaches you to find lightness and beauty in the middle of raw, unfiltered experience. I think that shows up in how I work.</p>
-
-            <h3>How I Work</h3>
-            <p>Clients often say they feel very safe with me. I tend to be quiet and holding, although I’m always up for a bit of good humour. I’m not here to give advice or tell you how to live. I believe you already have the answers. My job is to help you find them.</p>
-            <p>A quote I return to often: “When we push away painful, raw feelings, we push away the tenderness and we push away the aliveness.”</p>
-            <p>Therapy, for me, is about learning to stay with all of it.</p>
-
-            <h3>On Psychedelics</h3>
-            <p>My own experience showed me that psychedelics can be a profound support in therapeutic work. Used thoughtfully, they can be some of the most powerful tools available — but powerful doesn’t mean right for everyone, or right for every moment. Psychedelics can be profound allies in healing, but they’re not a shortcut. Readiness, context, and support matter enormously.</p>
-            <p>I work with people who have had profound or difficult psychedelic experiences in all kinds of contexts — including recreational use and personal exploration. Whatever brought you to the experience, what matters now is what you do with it.</p>
-
-            <h3>Qualifications</h3>
-            <ul class="creds">
-              <li>Fully qualified and accredited Gestalt therapist</li>
-              <li>Master’s degree in Psychology</li>
-              <li>Certificate in Psychedelic-Assisted Therapies and Research, California Institute of Integral Studies</li>
-              <li>Compassionate Inquiry Professional Training with Dr Gabor Maté</li>
-              <li>Schema Therapy Training, ISST-accredited course</li>
-              <li>ICEERS Integration Training</li>
-              <li>Plant Medicine Facilitation and Trauma-Informed Psychedelic Integration training with Atira Tan</li>
-              <li>200-hour Yoga Teacher Training, India, 2026</li>
-            </ul>
-            <p>Alongside my private practice, I collaborate with Inwardbound, supporting participants through preparation and integration within their legal psychedelic retreat programmes in the Netherlands.</p>
-            <p>I love spending time in nature — walking in forests, wild swimming, travelling. It’s also just where I feel most alive.</p>
-            <p>The introductory call is free, informal, and a good place to start.</p>
-            <p><a href="#contact" class="btn" data-section="contact">Get in touch</a></p>
-          </div>
-          <div class="lang-uk">
-            <h2>Моє підґрунтя та філософія</h2>
-            <p>Перш ніж стати терапевткою, я здобула магістерський ступінь із психології та пройшла спеціалізоване навчання з терапії травми, гештальт-терапії та психоделічної інтеграції. Мій шлях спонукає мене постійно розширювати навички, і зараз я навчаюся за підходом «Compassionate Inquiry» (Співчутливе дослідження) з д-ром Ґабором Мате, що глибоко співзвучний моєму травмо-інформованому погляду.</p>
-            <p>Я бачу терапію як спільний процес — у якому довіра, відкритість і навіть трохи гумору допомагають нам віднаходити інсайти, зцілювати давні рани та творити значущі, тривалі зміни. Незалежно від того, чи проживаєте ви травму, шукаєте ясності, чи просто намагаєтеся зрозуміти, де ви зараз у житті, — я поруч, щоб підтримати вас на вашому шляху.</p>
-            <h3>Моя освіта та досвід</h3>
-            <ul class="creds">
-              <li>Повністю кваліфікована та акредитована гештальт-терапевтка.</li>
-              <li>Магістерський ступінь із психології.</li>
-              <li>Завершила сертифікаційну програму з психоделік-асистованої терапії та досліджень у Каліфорнійському інституті інтегральних досліджень (CIIS).</li>
-              <li>Дотримується етичних і професійних стандартів UKCP та відповідає їхнім вимогам щодо постійної супервізії та професійного розвитку.</li>
-              <li>Викладачка BBM (Breath-Body-Mind) рівня 2.</li>
-              <li>Зареєстрована членкиня Британської ради психотерапії (UKCP).</li>
-              <li>Завершила тренінг з інтеграції ICEERS.</li>
-              <li>Завершила курс «Compassionate Inquiry» для фахівців із д-ром Ґабором Мате.</li>
-            </ul>
-            <p>Постійно розширює навички та знання в холістичних підходах, зокрема дихальних практиках, йозі, медитації та майндфулнес, і регулярно відвідує професійні воркшопи, курси та конференції.</p>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ---------- SERVICES ---------- -->
-    <section id="services" class="section">
-      <div class="wrap">
-
-        <!-- Individual Therapy -->
-        <article id="service-therapy" class="service reveal">
-          <div class="lang-en">
-            <h2>Individual Therapy</h2>
-
-            <h3>How We Work</h3>
-            <p>Therapy with me is a collaborative process. We pay attention to what’s happening now — your reactions, your patterns, the places where you keep getting stuck — and we get curious about what’s underneath. Sometimes that means exploring where things come from. Sometimes it means noticing what’s happening in the present moment, in the room, between us.</p>
-            <p>I also pay attention to the body. Sometimes it holds what words can’t reach yet — a tightness in the chest, a feeling you can’t quite name, a way of bracing that’s become so familiar you’ve stopped noticing it. We pay attention to that too — because the body really does keep score.</p>
-
-            <h3>What Changes</h3>
-            <p>People often leave therapy with a much clearer sense of their own reactions and triggers — not just understanding them, but having more choice around them. They also tend to develop something quieter: more compassion for themselves. And sometimes, the relationship we build in our work together becomes its own kind of experience — one they find themselves drawing on in their lives outside the room.</p>
-
-            <h3>I Work With</h3>
-            <ul class="creds">
-              <li>Complex trauma</li>
-              <li>Anxiety and panic attacks</li>
-              <li>Depression and low mood</li>
-              <li>Self-esteem and confidence issues</li>
-              <li>Imposter syndrome</li>
-              <li>Attachment and relationship difficulties</li>
-              <li>Stress and burnout</li>
-              <li>Family issues and unresolved conflicts</li>
-              <li>Life direction and a lack of purpose</li>
-            </ul>
-
-            <h3>Sessions and Fees</h3>
-            <ul class="creds">
-              <li>15-minute introductory call — <strong>free</strong>. A relaxed conversation to see if this feels like the right fit. No commitment, no pressure.</li>
-              <li>50-minute online session — <strong>£75</strong></li>
-            </ul>
-            <p>The introductory call is free, informal, and a good place to start.</p>
-            <p><a href="#contact" class="btn" data-section="contact">Get in touch</a></p>
-          </div>
-          <div class="lang-uk">
-            <h2>Індивідуальна терапія</h2>
-            <p>В індивідуальній терапії ми працюємо разом, щоб подолати як минулі, так і теперішні труднощі, допомагаючи вам жити з більшою ясністю та стійкістю. Хоча багато клієнтів звертаються до мене, щоб дослідити закономірності, вкорінені в минулому, я також працюю з тими, хто стикається з поточними проблемами, що можуть не мати чіткого зв’язку з попереднім досвідом.</p>
-            <details class="service-details">
-              <summary><span class="text-more">Детальніше</span><span class="text-less">Згорнути</span></summary>
-              <div class="details-body">
-                <p>Терапія зі мною — це спільна подорож. Ми починаємо з визначення джерел труднощів і уточнення ваших цілей. Для проблем, орієнтованих на теперішнє, я застосовую рішення-орієнтований підхід, працюючи разом із вами над практичними кроками та навичками.</p>
-                <p>Я працюю з широким колом запитів, зокрема:</p>
-                <ul class="creds">
-                  <li>ПТСР та комплексна травма</li>
-                  <li>Тривога та панічні атаки</li>
-                  <li>Депресія та знижений настрій</li>
-                  <li>Самооцінка та впевненість у собі</li>
-                  <li>Синдром самозванця</li>
-                  <li>Прив’язаність і труднощі у стосунках</li>
-                  <li>Стрес і вигорання</li>
-                  <li>Сімейні питання та невирішені конфлікти</li>
-                  <li>Пошук напрямку та відчуття сенсу</li>
-                </ul>
-                <p>Мій підхід поєднує розмовну терапію з тілесно-орієнтованими техніками: практиками усвідомленості, дихальними вправами та м’якими рухами.</p>
-                <h3>Сесії та вартість</h3>
-                <ul class="creds">
-                  <li>15-хвилинний ознайомчий дзвінок: <strong>БЕЗКОШТОВНО</strong></li>
-                  <li>50-хвилинна сесія (онлайн): <strong>£75</strong></li>
-                </ul>
-                <p><a href="#contact" class="btn" data-section="contact">Зв’язатися</a></p>
-              </div>
-            </details>
-          </div>
-        </article>
-
-        <!-- Breath. Walk. Talk. (walk-and-talk therapy) -->
-        <article id="service-walk" class="service reveal">
-          <div class="lang-en">
-            <h2>Breath. Walk. Talk.</h2>
-            <p class="service-tagline">Therapy that moves with you.</p>
-            <p>If sitting still while trying to feel better has never quite worked for you — if you’re navigating burnout, curious about mindfulness, or simply done with screens — I created this for you. Breath. Walk. Talk. is a one-hour outdoor session where you get three things at once.</p>
-
-            <div class="details-body">
-                <h3>Breath</h3>
-                <p>Your nervous system has its own reset button.</p>
-                <p>Most of us breathe on autopilot — shallow, fast, barely enough. Research shows that even a few minutes of slow, intentional breathing can lower stress, reduce anxiety, and shift your body out of survival mode.</p>
-                <p>Each session starts with a short breathing practice — long enough to reset, short enough to fit the hour. Just enough to arrive before we move.</p>
-
-                <h3>Walk</h3>
-                <p>Nature isn’t just a backdrop. It’s part of the work.</p>
-                <p>Studies show that as little as 20 minutes in a natural environment can measurably reduce cortisol — your body’s main stress hormone. Time in nature also quiets the part of the brain responsible for rumination — that loop of repetitive, draining thought.</p>
-                <p>We’re not walking to exercise. We’re walking because movement and nature together do something stillness can’t.</p>
-
-                <h3>Talk</h3>
-                <p>Being truly heard is its own kind of medicine.</p>
-                <p>As we walk, there’s space for whatever is present — what’s heavy, what’s unclear, what you haven’t quite found words for yet. The side-by-side nature of walking makes conversation feel different. Less exposed. More honest.</p>
-                <p>You’ll be met with full presence and acceptance — exactly where you are, not where you think you should be.</p>
-
-                <p>This isn’t a friendly walk. And it’s not a traditional therapy session either. It’s a weekly practice — intentional, structured, and designed to feel like something you actually look forward to.</p>
-
-                <h3>Practical Considerations</h3>
-                <p>Sessions take place at Hampstead Heath — one of London’s most expansive green spaces, with both open meadows and shaded woodland paths to suit the season and the mood.</p>
-                <p><strong>What about bad weather?</strong> Unless conditions are genuinely unsafe, that’s our agreement — we go out anyway.</p>
-
-                <h3>Sessions and Fees</h3>
-                <ul class="creds">
-                  <li>15-minute introductory call — <strong>free</strong></li>
-                  <li>60-minute outdoor session — <strong>£75</strong></li>
-                </ul>
-                <p><strong>Cancellation policy:</strong> As sessions are held outdoors and spaces are limited, I ask for 48 hours’ notice for cancellations. This allows me to offer the time to someone else. I understand that life happens — if something unexpected comes up, just get in touch.</p>
-                <p>Sessions are available 1–3 times per week, so you can build a rhythm that genuinely supports you over time.</p>
-                <p><a href="#contact" class="btn" data-section="contact">Book your introductory call</a></p>
-            </div>
-          </div>
-          <div class="lang-uk">
-            <h2>Breath. Walk. Talk.</h2>
-            <p>Breath. Walk. Talk. — це терапія на свіжому повітрі в парку Гемпстед-Гіт, Лондон, для тих моментів, коли вам потрібна підтримка, але не ще одна година нерухомого сидіння перед екраном. Ми йдемо поруч у спокійному темпі й дозволяємо розмові рухатися разом із нами. Багатьом людям перебування назовні та в русі допомагає легше думати вголос, відчувати й відкриватися.</p>
-            <details class="service-details">
-              <summary><span class="text-more">Детальніше</span><span class="text-less">Згорнути</span></summary>
-              <div class="details-body">
-                <p>Спільна прогулянка змінює форму сесії. Пліч-о-пліч, а не обличчям до обличчя, у ритмі кроків і у відкритому просторі парку — те, що складно висловити в кабінеті, часто проявляється м’якше. Тіло заспокоюється, дихання поглиблюється, і з’являється місце для всього, що потребує бути сказаним.</p>
-                <p>Цей формат може підійти вам, якщо ви:</p>
-                <ul class="creds">
-                  <li>Відчуваєте неспокій або «затиснутість» від онлайн-сесій перед екраном</li>
-                  <li>Легше думаєте та опрацьовуєте досвід у русі</li>
-                  <li>Хочете додати в роботу дихання, тіло та природу</li>
-                  <li>Проживаєте стрес, вигорання, тривогу або знижений настрій</li>
-                </ul>
-                <p>Ми починаємо з короткого знайомства, знаходимо комфортний темп і дозволяємо прогулянці тримати розмову. Сесії відбуваються за сприятливої погоди, і ми домовимося про простий план на випадок дощу або для днів, коли краще посидіти. Усе, чим ви ділитеся назовні, лишається настільки ж конфіденційним, як і на будь-якій іншій сесії.</p>
-                <blockquote class="disclaimer">Зверніть увагу: сесії «прогулянка-розмова» відбуваються в публічному парку. Перед початком ми обговоримо приватність і конфіденційність, і ви завжди можете обрати онлайн- або стаціонарну сесію натомість.</blockquote>
-                <h3>Сесії та вартість</h3>
-                <ul class="creds">
-                  <li>15-хвилинний ознайомчий дзвінок: <strong>БЕЗКОШТОВНО</strong></li>
-                  <li>60-хвилинна сесія «прогулянка-розмова» (Гемпстед-Гіт): <strong>£75</strong></li>
-                </ul>
-                <p><a href="#contact" class="btn" data-section="contact">Зв’язатися</a></p>
-              </div>
-            </details>
-          </div>
-        </article>
-
-        <!-- Psychedelic Integration -->
-        <article id="service-integration" class="service reveal">
-          <div class="lang-en">
-            <h2>Psychedelic Integration</h2>
-            <p>Something happened during a psychedelic experience — and you’re still carrying it. Maybe it was beautiful and you don’t want to lose it. Maybe it was overwhelming and you haven’t quite landed since. Maybe it cracked something open that you’re not sure what to do with.</p>
-            <p>Whatever brought you to that experience — a retreat, a ceremony, a clinical programme, or something you found your own way into — you don’t need to make sense of it alone.</p>
-
-            <div class="details-body">
-                <h3>What Integration Actually Is</h3>
-                <p>Psychedelic experiences can surface things that take time to understand — emotions, memories, realisations, shifts in how you see yourself or the world. Integration is the process of making meaning from all of that, and finding ways to let it become part of how you live.</p>
-                <p>We don’t work with substances in our sessions. What we work with is everything that came up when you did.</p>
-
-                <h3>Who This Is For</h3>
-                <p>People come to integration work from very different places. Some have had profound, beautiful experiences and want a safe space to explore what they mean. Some have had deeply challenging ones and are still trying to find their footing. Some felt fine at first — and then, weeks later, something quietly shifted.</p>
-                <p>I’ve worked with people after mushroom and ayahuasca retreats, ketamine-assisted treatment, and experiences that happened outside of any formal programme. Whatever the context, you’ll be met without judgment and with real clinical grounding.</p>
-
-                <h3>What We Work On</h3>
-                <ul class="creds">
-                  <li>Unpacking intense, confusing, or overwhelming experiences</li>
-                  <li>Processing memories or emotions that surfaced during altered states</li>
-                  <li>Exploring spiritual or existential shifts</li>
-                  <li>Making meaning of difficult or beautiful experiences</li>
-                  <li>Finding ways to embody new insights in daily life</li>
-                </ul>
-
-                <h3>On the Process</h3>
-                <p>Integration doesn’t end in a therapy room. My job is to help you find your footing — and then find your own way forward. That might mean therapy, but it might also mean community, movement, behavioural change, or simply time. We work together for as long as it’s useful, and we keep that question alive throughout.</p>
-
-                <h3>Sessions and Fees</h3>
-                <ul class="creds">
-                  <li>15-minute introductory call — <strong>free</strong>. A relaxed conversation to see if this feels like the right fit. No commitment, no pressure.</li>
-                  <li>60-minute online session — <strong>£65</strong></li>
-                </ul>
-                <p>The introductory call is free, informal, and a good place to start.</p>
-                <p><a href="#contact" class="btn" data-section="contact">Get in touch</a></p>
-            </div>
-          </div>
-          <div class="lang-uk">
-            <h2>Психоделічна інтеграція</h2>
-            <p>Терапія психоделічної інтеграції надає безпечний і підтримуючий простір для осмислення минулого психоделічного досвіду. Чи то ви маєте справу зі старим, невирішеним досвідом LSD, повертаєтесь після церемонії аяуаски, шукаєте підтримки інтеграції після лікування кетаміном, або намагаєтесь опрацювати нещодавній ретрит — ця форма терапії може допомогти вам інтегрувати свій досвід так, щоб підтримати зростання, заземлення та самопізнання.</p>
-            <details class="service-details">
-              <summary><span class="text-more">Детальніше</span><span class="text-less">Згорнути</span></summary>
-              <div class="details-body">
-                <h3>Що таке терапія психоделічної інтеграції?</h3>
-                <p>Психоделічна інтеграція відрізняється від психоделічної терапії тим, що ми не проводимо сесії з речовинами. Натомість ми зосереджуємось на опрацюванні та інтеграції минулого досвіду з психоделіками, дослідженні їхнього впливу та осмисленні інсайтів, емоцій, спогадів або труднощів, що могли виникнути.</p>
-                <p>Якщо психоделіки відіграли роль у вашому шляху, але залишили вас з відчуттям тривоги, сплутаності, відкритості, перевантаження або труднощів — інтеграційна робота може забезпечити заземлення та ясність.</p>
-                <p>Разом ми досліджуємо емоції, усвідомлення, несподівані спогади або зміни у сприйнятті, що могли виникнути, допомагаючи вам осмислити їх у ширшому контексті вашого життя.</p>
-                <p>Поширені теми в терапії психоделічної інтеграції:</p>
-                <ul class="creds">
-                  <li>Розбір інтенсивних або заплутаних переживань</li>
-                  <li>Опрацювання спогадів або почуттів, що виникли в змінених станах</li>
-                  <li>Робота з важкими емоціями: страхом, горем або радістю</li>
-                  <li>Дослідження духовних або екзистенційних наслідків цього досвіду</li>
-                  <li>Пошук способів впровадити нові інсайти в повсякденне життя</li>
-                </ul>
-                <blockquote class="disclaimer">Зверніть увагу: я пропоную лише підтримку інтеграції. Я не проводжу та не надаю психоделічного досвіду. Наша робота зосереджена виключно на опрацюванні та інтеграції того, що вже відбулося.</blockquote>
-                <h3>Сесії та вартість</h3>
-                <ul class="creds">
-                  <li>15-хвилинний ознайомчий дзвінок: <strong>БЕЗКОШТОВНО</strong></li>
-                  <li>60-хвилинна сесія (онлайн): <strong>£65</strong></li>
-                </ul>
-                <p><a href="#contact" class="btn" data-section="contact">Зв’язатися</a></p>
-              </div>
-            </details>
-          </div>
-        </article>
-
-        <!-- Integration Circles — Ukrainian only -->
-        <article id="service-circles" class="service reveal lang-uk">
-          <h2>Інтеграційне коло</h2>
-          <p>Після психоделічного досвіду може бути складно залишитися наодинці зі своїми переживаннями. Інтеграційне коло — це безпечний і довірчий простір, де ви можете поділитися своїм досвідом або просто побути поруч із тими, хто вас розуміє.</p>
-          <blockquote class="disclaimer">Зверніть увагу: я працюю лише з інтеграцією вже отриманого психоделічного досвіду. Я не фасилітую сесії і не надаю психоактивних речовин.</blockquote>
-          <h3>Що відбувається на зустрічах</h3>
-          <ul class="creds">
-            <li>Ми зустрічаємося онлайн у малих групах</li>
-            <li>Ви можете говорити або просто слухати — тут немає примусу</li>
-            <li>Кожен досвід унікальний, і ми ставимося до нього з повагою</li>
-            <li>Простір сповнений підтримки, без оцінок чи порад</li>
-          </ul>
-          <h3>Вартість</h3>
-          <p>Безкоштовно, за попередньою реєстрацією. Формат: онлайн-зустрічі (Zoom).<br>
-          Залиште свій імейл і я повідомлю вас, коли буде збиратися наступне коло.</p>
-          <p><a href="#contact" class="btn" data-section="contact">Повідомити мене</a></p>
-        </article>
-
-      </div>
-    </section>
-
-    <!-- ---------- CONTACT ---------- -->
-    <section id="contact" class="section">
-      <div class="wrap wrap-narrow">
-
-        <h1 class="reveal">
-          <span class="lang-en">Contact</span>
-          <span class="lang-uk">Контакти</span>
-        </h1>
-
-        <form id="contact-form" class="reveal" action="https://api.web3forms.com/submit" method="POST">
-          <input type="hidden" name="access_key" value="0fa4e589-f110-45dd-a6cf-b113817762ba" />
-          <label for="email">
-            <span class="lang-en">Your email:</span>
-            <span class="lang-uk">Ваша електронна пошта:</span>
-          </label>
-          <input type="email" id="email" name="email" required autocomplete="email" />
-
-          <label for="subject">
-            <span class="lang-en">Subject:</span>
-            <span class="lang-uk">Тема:</span>
-          </label>
-          <input type="text" id="subject" name="subject" required />
-
-          <label for="message">
-            <span class="lang-en">Message:</span>
-            <span class="lang-uk">Повідомлення:</span>
-          </label>
-          <textarea id="message" name="message" rows="10" required></textarea>
-
-          <button type="submit" class="btn btn-send">
-            <span class="lang-en">Send</span>
-            <span class="lang-uk">Надіслати</span>
-          </button>
-
-          <p class="form-status" role="status" aria-live="polite"></p>
-        </form>
-
-      </div>
-    </section>
-
-    <!-- ---------- BLOG (Ukrainian only) ---------- -->
-    <section id="blog" class="section blog-only">
-      <div class="wrap">
-
-        <article id="blog-video" class="blog-item reveal">
-          <div class="row two-col">
-            <div class="col col-text">
-              <h2>Відеолекція: що таке психоделічна інтеграція?</h2>
-              <p>Це відео — гарна відправна точка для всіх, хто цікавиться темою інтеграції психоделічних досвідів. Лекція була записана для Української асоціації психоделічних досліджень (UPRA), де я ділюсь базовими поняттями, прикладами з практики та відповідаю на питання слухачів. Наприкінці — живе обговорення з відповідями на запитання учасників.</p>
-            </div>
-            <div class="col col-media">
-              <div class="yt" data-id="SDMaQ13O3Fw" role="button" tabindex="0" aria-label="Відтворити відео">
-                <span class="yt-play" aria-hidden="true"></span>
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <article id="blog-post-1" class="blog-item reveal">
-          <div class="row one-col">
-            <h2>Що таке психоделічна інтеграція і навіщо вона потрібна</h2>
-
-            <blockquote>
-              <p>«Глибокі психологічні та духовні процеси, які можуть розкритися під час церемонії, потребують супроводу — як до, так і після — для повної інтеграції. Навіть ті учасники, які мали позитивний і глибоко надихаючий досвід, можуть не отримати повної користі без підтримки та допомоги в осмисленні пережитого.»</p>
-              <cite>— д-р Ґабор Мате</cite>
-            </blockquote>
-
-            <h3>Навіщо потрібна інтеграція?</h3>
-            <p>Якщо не приділити увагу інтеграції, досвід може: залишитися лише фрагментарним спогадом (приємним або травматичним), викликати дестабілізацію (паніку, безсоння, депресію), або, навпаки, стати джерелом глибоких змін — якщо його вчасно підтримати.</p>
-
-            <h3>Що кажуть дослідження?</h3>
-            <p>У нещодавньому науковому огляді (Bathje et al., 2022) автори проаналізували 24 визначення поняття «психоделічна інтеграція» та запропонували узагальнення:</p>
-            <blockquote>
-              <p>«Інтеграція — це процес, у якому людина свідомо повертається до свого психоделічного досвіду, активно досліджує, осмислює, перекладає та опрацьовує його зміст. Завдяки свідомому зусиллю та підтримуючим практикам, цей процес дозволяє поступово засвоювати отримані уроки й інсайти та вплітати їх у повсякденне життя.»</p>
-            </blockquote>
-
-            <h3>Коли інтеграція особливо необхідна?</h3>
-            <p>Іноді психоделічний досвід — це м'яке відкриття. А іноді — зустріч із хаосом, темрявою або втратою орієнтирів. У після-досвідовий період можуть з'являтись: тривожність, безсоння, панічні атаки, страх «з'їхати з глузду», обсесивні думки, екзистенційна криза, емоційна нестабільність, ізоляція. Це не «поганий досвід» — це незавершений досвід. Інтеграція допомагає дати цьому простір, сенс і напрямок.</p>
-
-            <h3>Метафори інтеграції</h3>
-            <ul class="creds">
-              <li>🧩 <strong>Пазл:</strong> іноді потрібно зібрати фрагменти у цілісну картину.</li>
-              <li>🌌 <strong>Карта точок:</strong> досвід — як розкидані точки з даними, які набувають сенсу лише у взаємозв'язку.</li>
-              <li>📸 <strong>Фотоплівка:</strong> потрібен проявник, щоб зображення стало видимим.</li>
-              <li>🌱 <strong>Насінина:</strong> була посаджена. Але без догляду — вона не проросте. Інтеграція — це полив, тепло, підтримка, захист, щоб згодом ця насінина дала плід.</li>
-            </ul>
-
-            <h3>Чи можна інтегрувати досвід самостійно?</h3>
-            <p>Так, звичайно. Самоінтеграція — первинна і дуже цінна. Особливо якщо: у вас є безпечне оточення, ви маєте стабільний психоемоційний стан, розумієте, як втілювати отриманий досвід у життя.</p>
-            <p>Але якщо відчуваєте, що вас «затягує» у внутрішній конфлікт, досвід лишив по собі тривогу, плутанину або нові складні емоції, з'явились симптоми фрагментації та відчуження, не знаєте, що робити з тим, що піднялось — тоді психоделічна інтеграція з підтримкою фахівця може бути тим безпечним «контейнером», який допоможе перетворити хаос на сенс.</p>
-
-            <h3>Що охоплює процес психоделічної інтеграції?</h3>
-            <ul class="creds">
-              <li>Онтологічний шок — конфлікт між новими уявленнями та старими цінностями</li>
-              <li>Осмислення складного або хаотичного досвіду</li>
-              <li>Інтеграція нових ідей, переконань, перспектив</li>
-              <li>Обережне внесення змін у життя</li>
-              <li>Робота з дистресом або пост-досвідними симптомами</li>
-              <li>Профілактика «вивітрювання» досвіду</li>
-              <li>Повернення до повсякденності з новим баченням</li>
-              <li>Робота з травматичними спогадами, які могли активуватись</li>
-            </ul>
-            <p>Інтеграція — це не подія, а процес, що може тривати місяці або навіть роки. Вона не завжди виглядає «глибоко» — іноді це просто здоровий сніданок або прогулянка. Іноді тригером до розуміння стає випадковий фільм, запах, або слово у випадково почутій розмові. Як і будь-яка трансформація, вона потребує часу, середовища, дбайливого ставлення до себе.</p>
-            <p>Якщо ви відчуваєте, що хочете поговорити про свій досвід, зрозуміти, що з ним робити, чи просто не залишатись наодинці з ним — я поруч 💚.</p>
-          </div>
-        </article>
-
-        <article id="blog-post-2" class="blog-item reveal">
-          <div class="row one-col">
-            <h2>Інтеграція психоделічного досвіду: практичний гайд для самостійної роботи</h2>
-
-            <p>Психоделічний досвід може бути потужним, глибоко зворушливим, трансформаційним. А може — незрозумілим, фрагментованим, викликом. У будь-якому випадку, сама подорож — це лише початок. Справжня робота починається після.</p>
-            <p>Інтеграція — це не про аналіз чи «роботу над собою» в строгому сенсі. Це про турботу, дбайливе слухання, створення простору для того, що з'явилось у подорожі, щоб воно могло розгорнутись, осісти, знайти своє місце у вашому житті. Не існує універсальної інструкції з інтеграції. Але існують практики, які можуть підтримати.</p>
-
-            <h3>1. Відпочинок і самодогляд</h3>
-            <p>Візьміть день-два без роботи, зустрічей і задач. Ваша нервова система потребує простору, щоб відновитися. Обмежте перегляд новин, соцмереж, фільмів з високою інтенсивністю. Дайте тілу спокій, тепло, відпочинок. Повноцінне харчування, теплий душ або ванна, масаж, прогулянка біля води чи в лісі — все це допомагає заземлитись.</p>
-
-            <h3>2. Створіть карту досвіду</h3>
-            <p>Запишіть усе, що пам'ятаєте. В деталях. У хронології. Через образи, звуки, кольори. Якщо у вас був плейліст — увімкніть його. Музика може «розблокувати» фрагменти, які свідомість ще не інтегрувала. Можна малювати. Графічно передавати свій стан, кольори, рух. Все це — мова, яку іноді краще розуміє підсвідомість.</p>
-
-            <h3>3. Простір для почуттів</h3>
-            <p>Після досвіду емоції можуть ще розгортатися. Дайте їм вихід. Спробуйте експресивне малювання, танець, спів, ліпку, або просто голосове «виговорення» у порожній простір. Ваш досвід — не лише ідеї. Це тіло, сльози, тепло, страх, здивування. І вони заслуговують бути проявленими і почутими.</p>
-
-            <h3>4. Дайте думкам форму</h3>
-            <p>Ведіть щоденник. Пишіть листи собі — до або після. Створюйте ментальні карти з інсайтів, питань, вражень. Важливо не «проаналізувати», а дозволити сенсам проявитися. Деколи вони приходять не одразу. Але якщо створити простір, вони з'являться.</p>
-            <p>Запитання для саморефлексії (оберіть 1–2, які вам зараз «дзвенять», відповідайте щиро, без цензури):</p>
-            <ul class="creds">
-              <li>Як мій досвід «відповів» на мій намір?</li>
-              <li>Що залишилось зі мною після досвіду?</li>
-              <li>Чи є образ / відчуття, яке не відпускає?</li>
-              <li>Що в мені змінилось назавжди?</li>
-              <li>Яку історію про себе я більше не хочу розповідати?</li>
-              <li>Які нові стани я хочу зберегти?</li>
-              <li>Хто або що підтримує мене зараз?</li>
-              <li>Чого я боюсь побачити у цьому досвіді?</li>
-            </ul>
-
-            <h3>5. Місце для тиші й символів</h3>
-            <p>Інтеграція — це не лише дії. Це і паузи. Простір між словами. Проводьте час на самоті. Вслухайтесь. Медитуйте. Знайдіть символ — камінь, гілочку, фото, прикрасу, якусь деталь, що уособлює ваш досвід. Це буде точка повернення, або точка контакту з вашим досвідом.</p>
-
-            <h3>Музика, що підтримує</h3>
-            <ul class="creds">
-              <li>East Forest – Music For Mushrooms</li>
-              <li>Beautiful Chorus</li>
-              <li>Ayla Schafer</li>
-              <li>Nils Frahm</li>
-              <li>Liquid Bloom</li>
-            </ul>
-            <p>Створіть свій власний плейліст для інтеграції. Це буде ваша внутрішня мапа повернення в стан, який ви хочете втілити.</p>
-
-            <h3>Книжки</h3>
-            <ul class="creds">
-              <li>Jack Kornfield – <em>After the Ecstasy, the Laundry</em></li>
-              <li>Станіслав Гроф – <em>Психологія майбутнього</em></li>
-              <li>Клариса Пінкола Естес – <em>Жінки, що бігають з вовками</em></li>
-              <li>Ґабор Мате – <em>Коли тіло каже ні</em></li>
-              <li>Пема Чодрон – <em>Коли життя стає руїнами</em></li>
-            </ul>
-
-            <h3>Фільми</h3>
-            <ul class="creds">
-              <li>Сіль Землі (2014)</li>
-              <li>Мій Учитель Восьминіг</li>
-              <li>Планета Земля</li>
-              <li>The Wisdom of Trauma</li>
-              <li>Baraka</li>
-              <li>Samsara</li>
-            </ul>
-
-            <p>Цей шлях не завжди варто проходити на самоті. Якщо ви відчуваєте, що досвід важко втілити, або навпаки — хочеться його поглибити, заземлити, знайти новий сенс — звертайтесь до того, хто зможе бути поруч. Без оцінки. Без нав'язування своїх ідей і змістів. Інтеграція — це про стосунок. Зі своїм досвідом. І з собою.</p>
-          </div>
-        </article>
-
       </div>
     </section>
 
@@ -680,7 +239,10 @@
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"
           integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
           crossorigin="anonymous"></script>
-  <script src="js/config.js"></script>
-  <script src="js/main.js"></script>
+  <script src="/js/config.js"></script>
+  <script src="/js/main.js"></script>
+  <!-- GoatCounter analytics (privacy-friendly, no cookies, free) -->
+  <script data-goatcounter="https://safeintegration.goatcounter.com/count"
+          async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>
